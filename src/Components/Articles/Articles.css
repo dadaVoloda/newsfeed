@@ -1,0 +1,39 @@
+.articles {
+    padding-bottom: 135px;
+}
+
+.articles__big-column {
+    grid-column: span 9;
+}
+
+.articles__small-column {
+    grid-column: 10/-1;
+}
+
+.article-category {
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 700;
+    color: var(--color-accent);
+    text-transform: uppercase;
+}
+
+.article-source {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--color-grey);
+    text-transform: uppercase;
+}
+
+.article-date {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 500;
+    color: var(--color-accent);
+    text-transform: uppercase;
+}
+
+.article-date + .article-source::before {
+    content: ' • ';
+}
