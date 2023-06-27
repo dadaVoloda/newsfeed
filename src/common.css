@@ -1,45 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Source+Sans+Pro:wght@400;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Source+Sans+Pro:wght@400;600;700&display=swap");
 
 :root {
-    --color-primary: #262A2F;
-    --color-accent: #FF5533;
-    --color-grey: #868686;
-    --color-white: #FFFFFF;
+  --color-primary: #262a2f;
+  --color-accent: #f53;
+  --color-grey: #868686;
+  --color-white: #fff;
 
-    --transition: 0.25s;
+  --transition: 0.25s;
 }
 
 * {
-    all: unset;
-    display: revert;
-    box-sizing: border-box;
+  all: unset;
+  display: revert;
+  box-sizing: border-box;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    font-family: 'Rubik', sans-serif;
-    font-size: 22px;
-    line-height: 26px;
-    font-weight: 400;
-    color: var(--color-primary);
-    background-color: var(--color-white);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Rubik", sans-serif;
+  font-size: 22px;
+  line-height: 26px;
+  font-weight: 400;
+  color: var(--color-primary);
+  background-color: var(--color-white);
 }
 
 img {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 20px;
 }
 
 .container {
-    max-width: 1470px;
-    padding: 0 15px;
-    margin: 0 auto;
+  max-width: 1470px;
+  padding: 0 15px;
+  margin: 0 auto;
 }

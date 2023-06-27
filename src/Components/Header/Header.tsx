@@ -1,21 +1,20 @@
-import React, {FC} from "react";
+import React, { FC } from 'react';
 
-import {Navigation} from "../Navigation/Navigation";
+import { Navigation } from '../Navigation/Navigation';
 
-import './Header.css'
-import {Category} from "../../utils";
+import './Header.css';
 
 interface Props {
-    category: Category
-    onNavClick: (e: React.MouseEvent<HTMLElement>, category: Category) => void
+  category: string;
+  onNavClick: (e: React.MouseEvent<HTMLElement>, category: string) => void;
 }
 
 export const Header: FC<Props> = (props) => {
-    return (
-        <header className="header">
-            <div className="container">
-                <Navigation {...props}/>
-            </div>
-        </header>
-    )
-}
+  return (
+    <header className="header">
+      <div className="container">
+        <Navigation {...props} />
+      </div>
+    </header>
+  );
+};
