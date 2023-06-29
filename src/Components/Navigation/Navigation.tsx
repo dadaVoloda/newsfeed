@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link, NavLink } from 'react-router-dom';
 
 import './Navigation.css';
 
@@ -12,36 +13,29 @@ interface Link {
 }
 
 interface Props {
-  category: string;
   placement?: 'header' | 'footer';
-  onNavClick: (e: React.MouseEvent<HTMLElement>, category: string) => void;
 }
 
-export const Navigation: FC<Props> = ({ category, onNavClick, placement = 'header' }) => {
-  const links: Link[] = [
-    { name: 'Главная', path: 'index' },
-    { name: 'Мода', path: 'fashion' },
-    { name: 'Технологии', path: 'tech' },
-    { name: 'Политика', path: 'politics' },
-    { name: 'Спорт', path: 'sport' },
-  ];
+const links: Link[] = [
+  { name: 'Главная', path: '' },
+  { name: 'Мода', path: 'fashion' },
+  { name: 'Технологии', path: 'tech' },
+  { name: 'Политика', path: 'politics' },
+  { name: 'Спорт', path: 'sport' },
+];
+
+export const Navigation: FC<Props> = ({ placement = 'header' }) => {
   return (
     <nav className={`navigation grid navigation--${placement}`}>
-      <a className="navigation__logo" href="#" onClick={(e) => onNavClick(e, 'index')}>
+      <Link to="/" className="navigation__logo">
         <img className="navigation__image" src={logo} alt="Логотип" />
-      </a>
+      </Link>
       <ul className="navigation__list">
         {links.map((link) => (
           <li className="navigation__item" key={link.name}>
-            <a
-              href={link.path}
-              onClick={(e) => onNavClick(e, link.path)}
-              className={`navigation__link ${
-                link.path === category ? 'navigation__link--active' : ''
-              }`}
-            >
+            <NavLink to={link.path} className={`navigation__link`}>
               {link.name}
-            </a>
+            </NavLink>
           </li>
         ))}
       </ul>

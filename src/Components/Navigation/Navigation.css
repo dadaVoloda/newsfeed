@@ -31,11 +31,11 @@
   transition: var(--transition);
 }
 
-.navigation__link--active {
+.navigation__link:hover {
   color: var(--color-accent);
 }
 
-.navigation__link:hover {
+.navigation__link.active {
   color: var(--color-accent);
 }
 
@@ -57,10 +57,10 @@
   color: var(--color-white);
 }
 
-.navigation--footer .navigation__link--active {
+.navigation--footer .navigation__link:hover {
   color: var(--color-accent);
 }
 
-.navigation--footer .navigation__link:hover {
+.navigation--footer .navigation__link.active {
   color: var(--color-accent);
 }

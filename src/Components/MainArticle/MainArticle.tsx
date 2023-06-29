@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 import './MainArticle.css';
 import { Article } from '../../types';
@@ -7,12 +8,10 @@ interface Props {
   item: Article;
   category: string;
   source: string;
-  onClick: () => void;
 }
-
-export const MainArticle: FC<Props> = ({ item, category, source, onClick }) => {
+export const MainArticle: FC<Props> = ({ item, category, source }) => {
   return (
-    <article className="main-article" onClick={onClick}>
+    <Link to={`/article/${item.id}`} className="main-article">
       <div className="main-article__img-container">
         <img className="main-article__img" src={item.image} alt="Фото новости" />
       </div>
@@ -22,6 +21,6 @@ export const MainArticle: FC<Props> = ({ item, category, source, onClick }) => {
         <p className="main-article__text">{item.description}</p>
         <span className="article-source main-article__source">{source}</span>
       </div>
-    </article>
+    </Link>
   );
 };

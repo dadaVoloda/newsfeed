@@ -4,16 +4,11 @@ import { Navigation } from '../Navigation/Navigation';
 
 import './Footer.css';
 
-interface Props {
-  category: string;
-  onNavClick: (e: React.MouseEvent<HTMLElement>, category: string) => void;
-}
-
-export const Footer: FC<Props> = (props) => {
+export const Footer: FC = () => {
   return (
     <footer className="footer">
       <div className="container">
-        <Navigation placement={'footer'} {...props} />
+        <Navigation placement={'footer'} />
         <div className="footer__bottom">
           <p className="footer__text">
             Сделано на Frontend курсе в

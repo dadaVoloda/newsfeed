@@ -1,32 +1,40 @@
 import React, { FC } from 'react';
 import { RelatedSmallArticle } from '../RelatedSmallArticle/RelatedSmallArticle';
 import { SingleLineTitleArticle } from '../SingleLineTitleArticle/SingleLineTitleArticle';
+import { useParams } from 'react-router-dom';
 
 import './ArticleItem.css';
-import { Article, ArticleItemApi, Category, RelatedArticlesApi, Source } from '../../types';
+import { Article, ArticleItemApi, Category, Source } from '../../types';
 import { beautifyDate } from '../../utils';
 
-interface Props {
-  id: number;
-  categories: Category[];
-  sources: Source[];
-  onArticleClick: (id: number) => void;
-}
-
-export const ArticleItem: FC<Props> = ({ id, categories, sources, onArticleClick }) => {
+export const ArticleItem: FC = () => {
   const [articleItem, setArticleItem] = React.useState<ArticleItemApi | null>(null);
   const [relatedArticles, setRelatedArticles] = React.useState<Article[] | null>(null);
+  const [categories, setCategories] = React.useState<Category[]>([]);
+  const [sources, setSources] = React.useState<Source[]>([]);
+
+  const { id } = useParams();
 
   React.useEffect(() => {
     fetch(`https://frontend.karpovcourses.net/api/v2/news/full/${id}`)
       .then((response) => response.json())
       .then(setArticleItem);
 
-    fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`)
-      .then((response) => response.json())
-      .then((data: RelatedArticlesApi) => {
-        setRelatedArticles(data.items);
-      });
+    Promise.all([
+      fetch(`https://frontend.karpovcourses.net/api/v2/categories`).then((response) =>
+        response.json()
+      ),
+      fetch(`https://frontend.karpovcourses.net/api/v2/sources`).then((response) =>
+        response.json()
+      ),
+      fetch(`https://frontend.karpovcourses.net/api/v2/news/related/${id}?count=9`).then(
+        (response) => response.json()
+      ),
+    ]).then(([categories, sources, articles]) => {
+      setCategories(categories);
+      setSources(sources);
+      setRelatedArticles(articles.items);
+    });
   }, [id]);
 
   if (articleItem === null) return;
@@ -72,15 +80,6 @@ export const ArticleItem: FC<Props> = ({ id, categories, sources, onArticleClick
             )}
 
             <p>{articleItem.text}</p>
-            {/*<p>Наши баскетболистки прекрасно шли по дистанции, но в решающий момент сплоховали.</p>*/}
-            {/*<img src="http://placeimg.com/1000/500/any" alt=""/>*/}
-            {/*<p>Победа США получилась слишком лёгкой. Американки с самого начала захватили инициативу и*/}
-            {/*    не*/}
-            {/*    давали России ни малейшего шанса совершить камбэк. Появилась хоть призрачная надежда на*/}
-            {/*    спасение, но американки сразу же попали из-за дуги и фактически сняли все вопросы —*/}
-            {/*    шансов*/}
-            {/*    отыграться при 12:17 не было.</p>*/}
-            {/*<img src="http://placeimg.com/1000/500/any" alt=""/>*/}
           </div>
 
           <div className="article__small-column">
@@ -90,11 +89,11 @@ export const ArticleItem: FC<Props> = ({ id, categories, sources, onArticleClick
               return (
                 <RelatedSmallArticle
                   key={item.id}
+                  id={item.id}
                   image={item.image}
                   title={item.title}
                   category={category?.name || ''}
                   source={source?.name || ''}
-                  onClick={() => onArticleClick(item.id)}
                 />
               );
             })}
@@ -113,12 +112,12 @@ export const ArticleItem: FC<Props> = ({ id, categories, sources, onArticleClick
               return (
                 <SingleLineTitleArticle
                   key={item.id}
+                  id={item.id}
                   image={item.image}
                   title={item.title}
                   text={item.description}
                   category={category?.name || ''}
                   source={source?.name || ''}
-                  onClick={() => onArticleClick(item.id)}
                 />
               );
             })}

@@ -4,16 +4,15 @@ import { Navigation } from '../Navigation/Navigation';
 
 import './Header.css';
 
-interface Props {
-  category: string;
-  onNavClick: (e: React.MouseEvent<HTMLElement>, category: string) => void;
-}
+// interface Props {
+//   category: string;
+// }
 
-export const Header: FC<Props> = (props) => {
+export const Header: FC = () => {
   return (
     <header className="header">
       <div className="container">
-        <Navigation {...props} />
+        <Navigation />
       </div>
     </header>
   );
