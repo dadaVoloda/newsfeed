@@ -30,26 +30,6 @@
   text-transform: uppercase;
 }
 
-.article__category {
-  grid-column: span 3;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-.article__date {
-  grid-column: 4/-1;
-  font-size: 20px;
-  line-height: 24px;
-}
-
-.article__hero .article__category {
-  grid-column: span 4;
-}
-
-.article__hero .article__date {
-  grid-column: 5/-1;
-}
-
 .article__main {
   grid-template-areas: "c c c c c c c . r r r r";
 }

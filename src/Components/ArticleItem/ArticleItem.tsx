@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { RelatedSmallArticle } from '../RelatedSmallArticle/RelatedSmallArticle';
 import { SingleLineTitleArticle } from '../SingleLineTitleArticle/SingleLineTitleArticle';
+import { ArticleItemInfo } from '../ArticleItemInfo/ArticleItemInfo';
 import { useParams } from 'react-router-dom';
 
 import './ArticleItem.css';
 import { Article, ArticleItemApi, Category, Source } from '../../types';
-import { beautifyDate } from '../../utils';
 
 export const ArticleItem: FC = () => {
   const [articleItem, setArticleItem] = React.useState<ArticleItemApi | null>(null);
@@ -39,6 +39,18 @@ export const ArticleItem: FC = () => {
 
   if (articleItem === null) return;
 
+  const renderArticleItem = (articleItem: ArticleItemApi) => {
+    return (
+      <ArticleItemInfo
+        categoryName={articleItem.category.name}
+        date={articleItem.date}
+        sourceLink={articleItem.link}
+        sourceName={articleItem.source?.name}
+        author={articleItem.author}
+      />
+    );
+  };
+
   return (
     <section className="article-page">
       <article className="article">
@@ -52,12 +64,7 @@ export const ArticleItem: FC = () => {
                 <h1 className="article__hero-title">{articleItem.title}</h1>
               </div>
 
-              <div className="grid">
-                <span className="article-category article__category">
-                  {articleItem.category.name}
-                </span>
-                <span className="article-date article__date">{beautifyDate(articleItem.date)}</span>
-              </div>
+              {renderArticleItem(articleItem)}
             </div>
           </section>
         )}
@@ -68,14 +75,7 @@ export const ArticleItem: FC = () => {
               <div className="article__title-container">
                 <h1 className="article__title">{articleItem.title}</h1>
 
-                <div className="grid">
-                  <span className="article-category article__category">
-                    {articleItem.category.name}
-                  </span>
-                  <span className="article-date article__date">
-                    {beautifyDate(articleItem.date)}
-                  </span>
-                </div>
+                {renderArticleItem(articleItem)}
               </div>
             )}
 
