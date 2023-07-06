@@ -2,14 +2,13 @@
 
 Основной проект курса [Karpov.courses Frontend](https://karpov.courses/dev/frontend)
 
-[Link](https://newsfeed-three.vercel.app/) to app https://newsfeed-three.vercel.app/
+[Link](https://newsfeed-three.vercel.app/) to app - https://newsfeed-three.vercel.app/
 
 ---
 
 #### Самостоятельные проекты для закрепления материала:
 
-1. Game "Find all pairs" ([link to app](https://find-all-pairs.vercel.app/))
-   1. React, Babel, Webpack, TypeScript
+1. Game "Find all pairs" | React, Babel, Webpack, TypeScript | [link to repo](https://github.com/dadaVoloda/find_all_pairs)
 
 ## Getting started
 
