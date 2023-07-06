@@ -11,7 +11,7 @@ export const Footer: FC = () => {
         <Navigation placement={'footer'} />
         <div className="footer__bottom">
           <p className="footer__text">
-            Сделано на Frontend курсе в
+            Сделано на Frontend курсе в&nbsp;
             <a
               className="footer__link"
               href="https://karpov.courses/frontend"
@@ -21,7 +21,7 @@ export const Footer: FC = () => {
               Karpov.Courses
             </a>
           </p>
-          <p className="footer__text footer__text--gray">© 2021</p>
+          <p className="footer__text footer__text--gray">© {new Date().getFullYear()}</p>
         </div>
       </div>
     </footer>
