@@ -9,7 +9,7 @@
   --transition: 0.25s;
 }
 
-* {
+*:not(svg *) {
   all: unset;
   display: revert;
   box-sizing: border-box;
@@ -30,6 +30,13 @@ body {
 img {
   display: block;
   width: 100%;
+  overflow: auto;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .grid {
@@ -42,4 +49,8 @@ img {
   max-width: 1470px;
   padding: 0 15px;
   margin: 0 auto;
+}
+
+.main {
+  flex-grow: 1;
 }

@@ -7,6 +7,7 @@ import './Articles.css';
 import { NewsApi } from '../../types';
 import { categoryIds } from '../../utils';
 import { useParams } from 'react-router-dom';
+import PartnerArticle from '../PartnerArticle/PartnerArticle';
 
 export const Articles: FC = () => {
   const [articles, setArticles] = React.useState<NewsApi>({
@@ -49,6 +50,10 @@ export const Articles: FC = () => {
             return <SmallArticle item={item} source={source?.name || ''} key={item.id} />;
           })}
         </section>
+      </div>
+
+      <div className="articles__partner-article">
+        <PartnerArticle />
       </div>
     </section>
   );

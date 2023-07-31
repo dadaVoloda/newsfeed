@@ -5,13 +5,19 @@
     "outDir": "./dist/",
     "sourceMap": true,
     "noImplicitAny": true,
-    "module": "es6",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "ESNext",
     "target": "es5",
     "jsx": "react-jsx",
     "allowJs": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "paths": {
+      "@components/*": ["Components/*"]
+    }
   },
+
   "include": ["src"],
   "exclude": ["node_modules", "dist"]
 }
