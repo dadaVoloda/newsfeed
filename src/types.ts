@@ -10,9 +10,11 @@ export interface Source {
   site?: string;
 }
 
+export type CategoryNames = 'politics' | 'sport' | 'tech' | 'fashion' | 'other' | 'karpov.courses';
+
 export interface Category {
   id: number;
-  name: string;
+  name: CategoryNames;
 }
 
 export interface Article {

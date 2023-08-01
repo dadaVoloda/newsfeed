@@ -1,42 +1,36 @@
 import React, { FC } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import { clsx } from 'clsx';
+import { categoryTitles } from '../../utils';
 
 import './Navigation.css';
 
-import logo from '../../images/logo.svg';
-
-type LinkName = 'Главная' | 'Мода' | 'Технологии' | 'Политика' | 'Спорт';
-
-interface Link {
-  name: LinkName;
-  path: string;
-}
-
 interface Props {
-  placement?: 'header' | 'footer';
+  className?: string;
 }
 
-const links: Link[] = [
-  { name: 'Главная', path: '' },
-  { name: 'Мода', path: 'fashion' },
-  { name: 'Технологии', path: 'tech' },
-  { name: 'Политика', path: 'politics' },
-  { name: 'Спорт', path: 'sport' },
-];
+interface ItemProps {
+  name: string;
+  title: string;
+}
 
-export const Navigation: FC<Props> = ({ placement = 'header' }) => {
+const NavigationItem: FC<ItemProps> = ({ name, title }) => {
   return (
-    <nav className={`navigation grid navigation--${placement}`}>
-      <Link to="/" className="navigation__logo">
-        <img className="navigation__image" src={logo} alt="Логотип" />
-      </Link>
+    <li className="navigation__item">
+      <NavLink to={`/${name}`} className={`navigation__link`}>
+        {title}
+      </NavLink>
+    </li>
+  );
+};
+
+export const Navigation: FC<Props> = ({ className }) => {
+  return (
+    <nav className={clsx('navigation', className)}>
       <ul className="navigation__list">
-        {links.map((link) => (
-          <li className="navigation__item" key={link.name}>
-            <NavLink to={link.path} className={`navigation__link`}>
-              {link.name}
-            </NavLink>
-          </li>
+        <NavigationItem name="" title="Новости" />
+        {Object.entries(categoryTitles).map(([name, title]) => (
+          <NavigationItem key={name} name={name} title={title} />
         ))}
       </ul>
     </nav>

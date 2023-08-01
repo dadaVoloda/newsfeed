@@ -2,9 +2,18 @@
 
 :root {
   --color-primary: #262a2f;
-  --color-accent: #f53;
-  --color-grey: #868686;
+  --color-accent: #0083fc;
+  --color-grey: #a3a3a3;
   --color-white: #fff;
+
+  --container-width: 940px;
+  --container-padding: 20px;
+  --grid-column-width: 60px;
+  --grid-gap: 20px;
+
+  --background-zero: var(--color-white);
+  --background-primary: var(--color-white);
+  --foreground-primary: var(--color-primary);
 
   --transition: 0.25s;
 }
@@ -20,11 +29,12 @@ body {
   flex-direction: column;
   min-height: 100vh;
   font-family: "Rubik", sans-serif;
-  font-size: 22px;
-  line-height: 26px;
+  font-size: 14px;
+  line-height: 20px;
   font-weight: 400;
-  color: var(--color-primary);
-  background-color: var(--color-white);
+  color: var(--foreground-primary);
+  background-color: var(--background-zero);
+  min-width: 320px;
 }
 
 img {
@@ -42,12 +52,12 @@ img {
 .grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  gap: 20px;
+  gap: var(--grid-gap);
 }
 
 .container {
-  max-width: 1470px;
-  padding: 0 15px;
+  max-width: calc(var(--container-width) + 2 * var(--container-padding));
+  padding: 0 var(--container-padding);
   margin: 0 auto;
 }
 
