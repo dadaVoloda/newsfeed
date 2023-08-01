@@ -1,21 +1,31 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Source+Sans+Pro:wght@400;600;700&display=swap");
 
 :root {
-  --color-primary: #262a2f;
-  --color-accent: #0083fc;
-  --color-grey: #a3a3a3;
-  --color-white: #fff;
+  --constant-black: #262a2f;
+  --constant-accent: #0083fc;
+  --constant-grey: #a3a3a3;
+  --constant-white: #fff;
 
   --container-width: 940px;
   --container-padding: 20px;
   --grid-column-width: 60px;
   --grid-gap: 20px;
 
-  --background-zero: var(--color-white);
-  --background-primary: var(--color-white);
-  --foreground-primary: var(--color-primary);
+  --background-zero: var(--constant-white);
+  --background-primary: var(--constant-white);
+  --foreground-primary: var(--constant-black);
 
   --transition: 0.25s;
+
+  color-scheme: light;
+}
+
+[scheme="dark"] {
+  --background-zero: #131517;
+  --background-primary: var(--constant-black);
+  --foreground-primary: var(--constant-white);
+
+  color-scheme: dark;
 }
 
 *:not(svg *) {

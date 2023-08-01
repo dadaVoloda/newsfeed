@@ -1,5 +1,5 @@
 .source {
-  color: var(--color-grey);
+  color: var(--constant-grey);
 }
 
 .source--link {

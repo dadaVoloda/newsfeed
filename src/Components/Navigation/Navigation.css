@@ -22,9 +22,9 @@
 }
 
 .navigation__link:hover {
-  color: var(--color-accent);
+  color: var(--constant-accent);
 }
 
 .navigation__link.active {
-  color: var(--color-accent);
+  color: var(--constant-accent);
 }

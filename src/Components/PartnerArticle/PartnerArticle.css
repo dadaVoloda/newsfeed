@@ -1,6 +1,6 @@
 .partner-article {
   padding: 40px 0;
-  background-color: var(--color-accent);
+  background-color: var(--constant-accent);
 }
 
 .partner-article__image-container {
@@ -21,7 +21,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--color-white);
+  color: var(--constant-white);
 }
 
 .partner-article__caption {

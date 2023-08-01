@@ -11,3 +11,7 @@
 .header__navigation {
   margin-left: 24px;
 }
+
+.header__controls {
+  margin-left: auto;
+}
