@@ -1,9 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Source+Sans+Pro:wght@400;600;700&display=swap");
 
 :root {
+  --constant-overlay-black-alpha64: rgba(0, 0, 0, 0.64);
   --constant-black: #262a2f;
   --constant-accent: #0083fc;
   --constant-grey: #a3a3a3;
+  --constant-grey1: #ebebeb;
   --constant-white: #fff;
 
   --container-width: 940px;
@@ -14,6 +16,7 @@
   --background-zero: var(--constant-white);
   --background-primary: var(--constant-white);
   --foreground-primary: var(--constant-black);
+  --color-scheme-switcher-border: var(--constant-grey);
 
   --transition: 0.25s;
 
@@ -24,6 +27,7 @@
   --background-zero: #131517;
   --background-primary: var(--constant-black);
   --foreground-primary: var(--constant-white);
+  --color-scheme-switcher-border: transparent;
 
   color-scheme: dark;
 }
@@ -32,6 +36,10 @@
   all: unset;
   display: revert;
   box-sizing: border-box;
+}
+
+.--prevent-scroll {
+  overflow: hidden;
 }
 
 body {
