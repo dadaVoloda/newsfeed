@@ -1,4 +1,4 @@
-import React, { createElement, FC, HTMLAttributes, RefObject, useEffect, useState } from 'react';
+import React, { FC, HTMLAttributes, RefObject, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 
 import throttle from 'lodash.throttle';
@@ -75,7 +75,7 @@ export const Dropdown: FC<Props> = ({
 
   return shown
     ? createPortal(
-        <div className={clsx('dropdown', className)} style={{ ...style, ...coords }}>
+        <div className={clsx('dropdown', className)} style={{ ...style, ...coords }} {...restProps}>
           {children}
         </div>,
         document.getElementById('overlay') as HTMLElement
