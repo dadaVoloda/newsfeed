@@ -14,7 +14,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import ListItemText from '@mui/material/ListItemText';
 import LogoutIcon from '@mui/icons-material/Logout';
 import IconButton from '@mui/material/IconButton';
-import { useAuth } from '../features/auth/AuthContextProvider';
+import { useAuth } from '@features/auth/AuthContextProvider';
 
 const drawerWidth = 300;
 export const AdminLayout = () => {

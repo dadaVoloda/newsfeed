@@ -11,7 +11,7 @@ module.exports = {
   mode: mode,
   entry: {
     main: './src/index.tsx',
-    initColorScheme: './src/initColorScheme.ts',
+    initColorScheme: './src/features/colorScheme/initColorScheme.ts',
   },
   devtool: 'inline-source-map',
   output: {
@@ -52,7 +52,10 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
-      '@components': path.resolve('./src/Components'),
+      '@components': path.resolve('./src/components'),
+      '@features': path.resolve('./src/features'),
+      '@app': path.resolve('./src/app'),
+      '@images': path.resolve('./src/images'),
     },
   },
   optimization: {
@@ -60,7 +63,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './src/app/index.html',
     }),
     new HtmlInlineScriptPlugin({
       scriptMatchPattern: [/initColorScheme\..+\.js$/],

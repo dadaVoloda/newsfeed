@@ -1,5 +1,4 @@
 import React, { createContext, FC, useContext, useEffect, useState } from 'react';
-import { IAuthContext } from './types';
 import { FirebaseApp } from 'firebase/app';
 import {
   getAuth,
@@ -14,6 +13,12 @@ import {
   UserCredential,
 } from 'firebase/auth';
 import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { IAuthContext } from '@features/auth/types';
+
+export const ALLOWED_OAUTH_PROVIDERS: Record<string, any> = {
+  [ProviderId.GOOGLE]: new GoogleAuthProvider(),
+  [ProviderId.GITHUB]: new GithubAuthProvider(),
+};
 
 const authContext = createContext<IAuthContext>({
   isAuthenticate: null,
@@ -22,11 +27,6 @@ const authContext = createContext<IAuthContext>({
   loginWithPopup: () => Promise.reject({}),
   logOut: () => undefined,
 });
-
-export const ALLOWED_OAUTH_PROVIDERS: Record<string, any> = {
-  [ProviderId.GOOGLE]: new GoogleAuthProvider(),
-  [ProviderId.GITHUB]: new GithubAuthProvider(),
-};
 
 export const useAuth = (): IAuthContext => useContext(authContext);
 
@@ -69,6 +69,8 @@ export const AuthContextProvider: FC<Props> = ({ children, firebaseApp }) => {
   const logOut = () => signOut(auth);
 
   useEffect(() => {
+    if (!auth) return;
+
     auth.setPersistence(browserLocalPersistence);
 
     auth.onAuthStateChanged((user) => {

@@ -1,5 +1,4 @@
 import React, { FC, FormEvent, Reducer, useReducer, useState } from 'react';
-import { ILoginField, LoginForm } from '@components/LoginForm/LoginForm';
 import './LoginContainer.css';
 import { validateEmail } from './utils';
 import { ALLOWED_OAUTH_PROVIDERS, useAuth } from '../AuthContextProvider';
@@ -11,6 +10,7 @@ import Link from '@mui/material/Link';
 import GoogleIcon from '@mui/icons-material/Google';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LoginIcon from '@mui/icons-material/Login';
+import { ILoginField, LoginForm } from '@features/auth/components/LoginForm/LoginForm';
 
 type TLoginFieldState = Omit<ILoginField, 'onChange'>;
 
