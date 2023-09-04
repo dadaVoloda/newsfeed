@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import './ArticlePage.css';
@@ -17,7 +17,10 @@ import { fetchArticleItem } from '@features/articleItem/actions';
 import { fetchRelatedArticles } from '@features/relatedNews/actions';
 import { setArticleItem } from '@features/articleItem/slice';
 import { categoryTitles } from '@features/categories/constants';
-import { beautifyDate } from '@app/utils';
+import { beautifyDate, repeat } from '@app/utils';
+import { HeroSkeleton } from '@components/Hero/HeroSkeleton';
+import { SkeletonText } from '@components/SkeletonText/SkeletonText';
+import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton';
 
 export const ArticlePage: FC = () => {
   const { id } = useParams();
@@ -28,12 +31,12 @@ export const ArticlePage: FC = () => {
   const sources = useSelector(getSources);
   const [loading, setLoading] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setLoading(true);
     Promise.all([
       appDispatch(fetchArticleItem(Number(id))),
       appDispatch(fetchRelatedArticles(Number(id))),
-    ]).finally(() => {
+    ]).then(() => {
       setLoading(false);
     });
 
@@ -41,6 +44,34 @@ export const ArticlePage: FC = () => {
       dispatch(setArticleItem(null));
     };
   }, [id]);
+
+  if (loading) {
+    return (
+      <section className="article-page">
+        <HeroSkeleton className="article-page__hero" hasText={true} />
+        <div className="container article-page__main">
+          <div className="article-page__info">
+            <SkeletonText />
+          </div>
+          <div className="grid">
+            <div className="article-page__content">
+              <div>
+                <SkeletonText rowsCount={6} />
+              </div>
+            </div>
+
+            <div className="article-page__sidebar">
+              {repeat((i) => {
+                return (
+                  <SidebarArticleCardSkeleton className="article-page__sidebar-item" key={i} />
+                );
+              }, 3)}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   if (articleItem === null) return null;
 

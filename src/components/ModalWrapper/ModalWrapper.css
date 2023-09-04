@@ -5,7 +5,7 @@
   left: 0;
   top: 0;
   display: flex;
-  background-color: var(--constant-overlay-black-alpha64);
+  background-color: var(--constant-black-alpha64);
 }
 
 .modal-wrapper--alignY-center {

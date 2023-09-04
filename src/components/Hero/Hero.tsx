@@ -2,6 +2,7 @@ import React from 'react';
 import { clsx } from 'clsx';
 import './Hero.css';
 import { Title } from '@components/Title/Title';
+import { Image } from '@components/Image/Image';
 
 interface Props {
   image?: string;
@@ -15,7 +16,8 @@ export const Hero: React.FC<Props> = ({ image = '', title, text = '', className 
 
   return (
     <section className={clsx('hero', { 'hero--no-image': !hasImage }, className)}>
-      <div className="hero__in" style={{ backgroundImage: `url(${image})` }}>
+      <div className="hero__in">
+        <Image src={image} className="hero__image" />
         <div className="hero__container container">
           <div className="hero__content">
             <Title className="hero__title">{title}</Title>

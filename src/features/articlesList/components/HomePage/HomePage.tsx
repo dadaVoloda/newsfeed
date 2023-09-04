@@ -17,6 +17,10 @@ import { getCategories } from '@features/categories/selectors';
 import { getSources } from '@features/sources/selectors';
 import { fetchNews, fetchTrends } from '@features/articlesList/actions';
 import { fetchCategoryArticles } from '@features/categoryArticles/actions';
+import { HeroSkeleton } from '@components/Hero/HeroSkeleton';
+import { ArticleCardSkeleton } from '@components/ArticleCard/ArticleCardSkeleton';
+import { SidebarArticleCardSkeleton } from '@components/SidebarArticleCard/SidebarArticleCardSkeleton';
+import { repeat } from '@app/utils';
 
 type CategoriesRecord = Record<Category['id'], Category>;
 type SourcesRecord = Record<Source['id'], Source>;
@@ -35,10 +39,54 @@ export const HomePage: FC = () => {
       dispatch(fetchNews()),
       dispatch(fetchTrends()),
       dispatch(fetchCategoryArticles(categoryIds['karpov.courses'])),
-    ]).finally(() => {
+    ]).then(() => {
       setLoading(false);
     });
   }, []);
+
+  if (loading) {
+    return (
+      <div className="home-page">
+        <div className="home-page__hero-link">
+          <HeroSkeleton hasText={true} />
+        </div>
+        <section className="container home-page__section">
+          <Title Component="h2" className="home-page__title">
+            В тренде
+          </Title>
+          <div className="grid">
+            {repeat((i) => {
+              return (
+                <ArticleCardSkeleton
+                  className="home-page__trends-item"
+                  key={i}
+                  hasImage={false}
+                  hasDescription={false}
+                />
+              );
+            }, 6)}
+          </div>
+        </section>
+        <section className="container home-page__section">
+          <Title Component="h2" className="home-page__title">
+            Karpov
+          </Title>
+          <div className="grid">
+            <section className="home-page__content">
+              {repeat((i) => {
+                return <ArticleCardSkeleton className="home-page__article-card" key={i} />;
+              }, 4)}
+            </section>
+            <section className="home-page__sidebar">
+              {repeat((i) => {
+                return <SidebarArticleCardSkeleton className="home-page__sidebar-item" key={i} />;
+              }, 2)}
+            </section>
+          </div>
+        </section>
+      </div>
+    );
+  }
 
   const firstArticle = articles[0];
 

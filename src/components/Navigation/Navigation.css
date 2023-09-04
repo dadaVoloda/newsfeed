@@ -17,7 +17,6 @@
   font-size: 16px;
   font-weight: 900;
   text-transform: uppercase;
-  cursor: pointer;
   transition: var(--transition);
 }
 

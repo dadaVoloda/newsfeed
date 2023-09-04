@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 
 import { MainLayout } from '../../../layouts/MainLayout';
@@ -13,9 +13,13 @@ import { HomePage } from '@features/articlesList/components/HomePage/HomePage';
 
 export const App = () => {
   const { pathname } = useLocation();
+  const prevPathName = useRef(pathname);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (pathname !== prevPathName.current) {
+      prevPathName.current = pathname;
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return (
